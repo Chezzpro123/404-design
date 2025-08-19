@@ -17,67 +17,56 @@
       position: relative;
     }
 
-    /* STARFIELD */
+    /* ===== STARFIELD ===== */
     .stars {
       position: absolute;
-      width: 1px;
-      height: 1px;
+      width: 100%;
+      height: 200%;
       background: transparent;
-      box-shadow: 
-        100px 200px white,
-        300px 400px white,
-        500px 100px white,
-        700px 300px white,
-        900px 150px white,
-        1100px 250px white,
-        1300px 50px white,
-        400px 600px white,
-        600px 800px white,
-        800px 900px white,
-        1200px 700px white,
-        1400px 500px white;
-      animation: starsUp 40s linear infinite;
+      background-image: 
+        radial-gradient(2px 2px at 20px 20px, white, transparent),
+        radial-gradient(2px 2px at 200px 150px, white, transparent),
+        radial-gradient(2px 2px at 400px 80px, white, transparent),
+        radial-gradient(2px 2px at 600px 300px, white, transparent),
+        radial-gradient(2px 2px at 800px 250px, white, transparent),
+        radial-gradient(2px 2px at 1000px 100px, white, transparent),
+        radial-gradient(2px 2px at 1200px 200px, white, transparent),
+        radial-gradient(2px 2px at 1400px 400px, white, transparent),
+        radial-gradient(2px 2px at 1600px 50px, white, transparent);
+      background-size: cover;
+      animation: moveStars 60s linear infinite;
+      z-index: 0;
     }
 
-    .stars::after {
-      content: "";
-      position: absolute;
-      top: 100vh;
-      width: 1px;
-      height: 1px;
-      background: transparent;
-      box-shadow: inherit;
-    }
-
-    @keyframes starsUp {
+    @keyframes moveStars {
       from { transform: translateY(0); }
-      to { transform: translateY(-100vh); }
+      to { transform: translateY(-100%); }
     }
 
-    /* CONTAINER */
+    /* ===== TEXT ===== */
     .container {
       position: relative;
       text-align: center;
-      z-index: 10;
+      z-index: 2;
     }
 
-    /* INVISIBLE TEXT */
     h1 {
       font-size: 3rem;
       font-weight: bold;
       letter-spacing: 2px;
-      color: #0b0f1a; /* hidden by default */
+      color: #0b0f1a; /* hidden */
       position: relative;
       mix-blend-mode: difference; /* revealed by light */
     }
 
-    /* LAMP */
+    /* ===== LAMP ===== */
     .lamp {
       position: absolute;
       top: -250px;
       left: 50%;
       transform-origin: top center;
       animation: swing 4s infinite ease-in-out;
+      z-index: 1;
     }
 
     .lamp-head {
@@ -96,21 +85,22 @@
       border-radius: 50%;
       margin: 0 auto;
       margin-top: -10px;
-      box-shadow: 0 0 20px 10px rgba(0,230,230,0.6);
+      box-shadow: 0 0 30px 15px rgba(0,230,230,0.7);
     }
 
+    /* ===== RECTANGLE LIGHT ===== */
     .lamp-light {
       position: absolute;
       top: 60px;
       left: 50%;
-      width: 200px;
-      height: 800px;
-      background: rgba(0, 230, 230, 0.2);
+      width: 220px;
+      height: 900px;
+      background: rgba(0, 230, 230, 0.15);
       transform: translateX(-50%);
       mix-blend-mode: lighten;
     }
 
-    /* SWING ANIMATION */
+    /* ===== SWING ===== */
     @keyframes swing {
       0% { transform: rotate(45deg); }
       50% { transform: rotate(-45deg); }
