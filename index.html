@@ -14,42 +14,44 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
-    /* STAR BACKGROUND */
-    .stars, .stars2, .stars3 {
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background-repeat: repeat;
-      background-size: contain;
-      top: 0;
-      left: -50%;
-      animation: moveUp 50s linear infinite;
-    }
-
+    /* STARFIELD */
     .stars {
-      background-image: radial-gradient(2px 2px at 20px 20px, white, transparent),
-                        radial-gradient(2px 2px at 50px 150px, white, transparent),
-                        radial-gradient(2px 2px at 200px 80px, white, transparent);
-      animation-duration: 60s;
-    }
-    .stars2 {
-      background-image: radial-gradient(1.5px 1.5px at 100px 200px, white, transparent),
-                        radial-gradient(1.5px 1.5px at 300px 400px, white, transparent),
-                        radial-gradient(1.5px 1.5px at 250px 100px, white, transparent);
-      animation-duration: 90s;
-    }
-    .stars3 {
-      background-image: radial-gradient(1px 1px at 400px 50px, white, transparent),
-                        radial-gradient(1px 1px at 600px 300px, white, transparent),
-                        radial-gradient(1px 1px at 800px 200px, white, transparent);
-      animation-duration: 120s;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: transparent;
+      box-shadow: 
+        100px 200px white,
+        300px 400px white,
+        500px 100px white,
+        700px 300px white,
+        900px 150px white,
+        1100px 250px white,
+        1300px 50px white,
+        400px 600px white,
+        600px 800px white,
+        800px 900px white,
+        1200px 700px white,
+        1400px 500px white;
+      animation: starsUp 40s linear infinite;
     }
 
-    @keyframes moveUp {
+    .stars::after {
+      content: "";
+      position: absolute;
+      top: 100vh;
+      width: 1px;
+      height: 1px;
+      background: transparent;
+      box-shadow: inherit;
+    }
+
+    @keyframes starsUp {
       from { transform: translateY(0); }
-      to { transform: translateY(-50%); }
+      to { transform: translateY(-100vh); }
     }
 
     /* CONTAINER */
@@ -64,15 +66,15 @@
       font-size: 3rem;
       font-weight: bold;
       letter-spacing: 2px;
-      color: #0b0f1a; /* same as background */
+      color: #0b0f1a; /* hidden by default */
       position: relative;
-      mix-blend-mode: difference; /* interacts with light */
+      mix-blend-mode: difference; /* revealed by light */
     }
 
     /* LAMP */
     .lamp {
       position: absolute;
-      top: -200px;
+      top: -250px;
       left: 50%;
       transform-origin: top center;
       animation: swing 4s infinite ease-in-out;
@@ -84,16 +86,26 @@
       background: #00e6e6;
       border-radius: 50% 50% 0 0;
       margin: 0 auto;
+      position: relative;
+    }
+
+    .lamp-bulb {
+      width: 20px;
+      height: 20px;
+      background: #00e6e6;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-top: -10px;
+      box-shadow: 0 0 20px 10px rgba(0,230,230,0.6);
     }
 
     .lamp-light {
       position: absolute;
       top: 60px;
       left: 50%;
-      width: 800px;
+      width: 200px;
       height: 800px;
-      background: radial-gradient(ellipse at top, rgba(0, 230, 230, 0.25), transparent 70%);
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background: rgba(0, 230, 230, 0.2);
       transform: translateX(-50%);
       mix-blend-mode: lighten;
     }
@@ -108,12 +120,11 @@
 </head>
 <body>
   <div class="stars"></div>
-  <div class="stars2"></div>
-  <div class="stars3"></div>
 
   <div class="container">
     <div class="lamp">
       <div class="lamp-head"></div>
+      <div class="lamp-bulb"></div>
       <div class="lamp-light"></div>
     </div>
     <h1>404 PAGE NOT FOUND</h1>
