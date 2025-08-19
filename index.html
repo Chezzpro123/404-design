@@ -9,68 +9,108 @@
       margin: 0;
       height: 100vh;
       background: #0b0f1a;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
     }
 
+    /* STAR BACKGROUND */
+    .stars, .stars2, .stars3 {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background-repeat: repeat;
+      background-size: contain;
+      top: 0;
+      left: -50%;
+      animation: moveUp 50s linear infinite;
+    }
+
+    .stars {
+      background-image: radial-gradient(2px 2px at 20px 20px, white, transparent),
+                        radial-gradient(2px 2px at 50px 150px, white, transparent),
+                        radial-gradient(2px 2px at 200px 80px, white, transparent);
+      animation-duration: 60s;
+    }
+    .stars2 {
+      background-image: radial-gradient(1.5px 1.5px at 100px 200px, white, transparent),
+                        radial-gradient(1.5px 1.5px at 300px 400px, white, transparent),
+                        radial-gradient(1.5px 1.5px at 250px 100px, white, transparent);
+      animation-duration: 90s;
+    }
+    .stars3 {
+      background-image: radial-gradient(1px 1px at 400px 50px, white, transparent),
+                        radial-gradient(1px 1px at 600px 300px, white, transparent),
+                        radial-gradient(1px 1px at 800px 200px, white, transparent);
+      animation-duration: 120s;
+    }
+
+    @keyframes moveUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-50%); }
+    }
+
+    /* CONTAINER */
     .container {
       position: relative;
       text-align: center;
+      z-index: 10;
     }
 
+    /* INVISIBLE TEXT */
     h1 {
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: bold;
       letter-spacing: 2px;
+      color: #0b0f1a; /* same as background */
       position: relative;
-      z-index: 1;
+      mix-blend-mode: difference; /* interacts with light */
     }
 
-    /* Lamp */
+    /* LAMP */
     .lamp {
       position: absolute;
       top: -200px;
       left: 50%;
-      width: 100px;
-      height: 100px;
-      margin-left: -50px;
       transform-origin: top center;
-      animation: swing 3s infinite ease-in-out;
+      animation: swing 4s infinite ease-in-out;
     }
 
     .lamp-head {
-      width: 100px;
-      height: 50px;
+      width: 120px;
+      height: 60px;
       background: #00e6e6;
       border-radius: 50% 50% 0 0;
-      position: relative;
       margin: 0 auto;
     }
 
     .lamp-light {
       position: absolute;
-      top: 50px;
+      top: 60px;
       left: 50%;
-      width: 400px;
-      height: 400px;
-      background: rgba(0, 230, 230, 0.2);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(ellipse at top, rgba(0, 230, 230, 0.25), transparent 70%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform: translateX(-50%);
+      mix-blend-mode: lighten;
     }
 
-    /* Swing animation */
+    /* SWING ANIMATION */
     @keyframes swing {
-      0% { transform: rotate(10deg); }
-      50% { transform: rotate(-10deg); }
-      100% { transform: rotate(10deg); }
+      0% { transform: rotate(45deg); }
+      50% { transform: rotate(-45deg); }
+      100% { transform: rotate(45deg); }
     }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
   <div class="container">
     <div class="lamp">
       <div class="lamp-head"></div>
